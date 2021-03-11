@@ -8,6 +8,7 @@
 import Foundation
 import JavaScriptCore
 import UIKit
+import Contacts
 
 @objc protocol MyExport : JSExport
 {
@@ -17,8 +18,12 @@ import UIKit
 
 class JSInterface : NSObject, MyExport
 {
-    func askContactPermission() -> Bool{
+    func askContactPermission() -> Bool {
         print("ios: asking contact permission")
-        return false
+        var permissionAccess: Bool = false
+        CNContactStore().requestAccess(for: .contacts) { (access, error) in
+            permissionAccess = access
+        }
+        return permissionAccess
     }
 }
