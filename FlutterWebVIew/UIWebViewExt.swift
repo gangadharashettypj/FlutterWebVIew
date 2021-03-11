@@ -57,9 +57,11 @@ extension UIWebView {
                 if let json = try? JSONSerialization.data(withJSONObject: agrument, options: []), let jsonString = String(data: json, encoding: .utf8) {
                     agrumentString = "\(agrumentString)\(jsonString)"
                 } else {
+                    print("error")
                     fatalError("Only support [String: String] or [String: Numberic] !!")
                 }
             } else {
+                print("error")
                 fatalError("Only support string or number or dictionary !!")
             }
         }
